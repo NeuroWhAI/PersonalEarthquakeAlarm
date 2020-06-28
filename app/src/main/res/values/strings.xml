@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">여기 지진</string>
+    <string name="tab_text_1">지진정보</string>
+    <string name="tab_text_2">행동요령</string>
+</resources>
