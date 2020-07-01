@@ -29,21 +29,28 @@ import kotlin.math.round
 
 class PewsFirebaseMessagingService : FirebaseMessagingService() {
 
-    private val topicName = "eqk"
+    private lateinit var topicName: String
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreate() {
         super.onCreate()
+
+        topicName = if (BuildConfig.DEBUG) {
+            "test"
+        }
+        else {
+            "eqk"
+        }
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         FirebaseMessaging.getInstance().subscribeToTopic(topicName)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "구독 성공")
+                    Log.d(TAG, "$topicName 구독 성공")
                 }
                 else {
-                    Log.d(TAG, "구독 실패")
+                    Log.d(TAG, "$topicName 구독 실패")
                 }
             }
     }
